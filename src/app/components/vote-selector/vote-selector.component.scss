@@ -1,0 +1,62 @@
+:host {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectors-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+}
+
+.buttons-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.button {
+    margin-right: .5rem;
+}
+
+@media screen and (min-width: 680px) {
+    .selectors-container {
+        flex-direction: row;
+        width: 100%;
+    }
+    
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .button {
+        width: auto;
+    }
+
+    .selector {
+        margin-right: 1rem;
+        width: 200px;
+    }
+
+}
+
+@media screen and (min-width: 940px) {
+    :host {
+        flex-direction: row;
+    }
+
+    .selectors-container {
+        width: auto;
+    }
+
+    .buttons-container {
+        justify-content: left;
+        width: auto;
+    }
+}

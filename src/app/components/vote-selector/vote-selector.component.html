@@ -1,0 +1,13 @@
+<div class="selectors-container">
+    <app-country-selector-control *ngFor="let model of selectModels"
+        class="selector"
+        [countries]="countries"
+        [label]="model.label"
+        [(selectedCountry)]="model.selection">
+    </app-country-selector-control>
+</div>
+
+<div class="buttons-container">
+    <button class="button" mat-raised-button color="secondary" (click)="onSubmit()">Submit</button>
+    <button class="button" mat-raised-button color="secondary" (click)="onClear()">Clear</button>
+</div>

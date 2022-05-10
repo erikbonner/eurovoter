@@ -1,0 +1,17 @@
+<mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar 
+        [ngStyle]="{ 'background-image': 'url(' + (voter.photoUrl || '../assets/anon-avatar.svg') + ')'}"
+        class="avatar"></div>
+      <mat-card-title>{{voter.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+        <img src="assets/gold.svg" class="medal">
+        <span class="vote">{{voter.vote?.firstPlace?.name ?? 'not set'}}</span>
+        <img src="assets/silver.svg" class="medal">
+        <span class="vote">{{voter.vote?.secondPlace?.name ?? 'not set'}}</span>
+        <img src="assets/bronze.svg" class="medal">
+        <span class="vote">{{voter.vote?.thirdPlace?.name ?? 'not set'}}</span>
+    </mat-card-content>
+  </mat-card>
+  

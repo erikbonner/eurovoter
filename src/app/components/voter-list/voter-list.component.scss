@@ -1,0 +1,34 @@
+// .avatar {
+//     width: 32px;
+//     height: 32px;
+//     margin-right: 1rem;
+// }
+
+// .name {
+//     margin-right: 2rem;
+//     margin-bottom: 1rem;
+// }
+
+// .medal {
+//     width: 16px;
+//     height: 16px;
+// }
+
+// .vote {
+//     margin-left: .5rem;
+//     margin-right: 1rem;
+// }
+
+// .second-line {
+//     margin-top: 1rem;
+// }
+
+:host {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.item {
+    margin: 1rem;
+}

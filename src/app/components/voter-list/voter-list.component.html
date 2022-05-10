@@ -1,0 +1,19 @@
+<!-- <mat-list>
+    <mat-list-item *ngFor="let voter of voters; "> 
+        <app-voter-avatar mat-list-avatar class="avatar" [voter]="voter"></app-voter-avatar>
+        <span mat-line class="name">{{voter.name}}</span>
+        <div mat-line class="second-line">
+            <img src="assets/gold.svg" class="medal">
+            <span class="vote">{{voter.vote?.firstPlace?.name ?? 'not set'}}</span>
+            <img src="assets/silver.svg" class="medal">
+            <span class="vote">{{voter.vote?.secondPlace?.name ?? 'not set'}}</span>
+            <img src="assets/bronze.svg" class="medal">
+            <span class="vote">{{voter.vote?.thirdPlace?.name ?? 'not set'}}</span>
+        </div>
+     </mat-list-item>
+</mat-list>
+    -->
+
+    <ng-container *ngFor="let voter of voters">
+        <app-voter-info class="item" [voter]="voter"></app-voter-info>
+    </ng-container>
