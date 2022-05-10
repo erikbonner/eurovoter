@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-for-deploy": "ng build --prod --baseHref=/eurovoter/",
     "start-emulator": "firebase emulators:start --export-on-exit=./emulator-data --import=./emulator-data",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
