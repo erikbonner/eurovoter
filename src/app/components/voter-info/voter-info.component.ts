@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Voter } from 'src/app/models/voter.model';
 
 @Component({
@@ -9,7 +10,7 @@ import { Voter } from 'src/app/models/voter.model';
 export class VoterInfoComponent implements OnInit {
 
   @Input() voter: Voter
-  constructor() { }
+  constructor(@Inject(APP_BASE_HREF) readonly baseHref: string) { }
 
   ngOnInit(): void {
   }

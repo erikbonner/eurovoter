@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLoginSuccessful(authResult: any, redirectUrl?: string): boolean {
     console.log('Login Success!', {authResult, redirectUrl})
     this.router.navigateByUrl('/main')
-    return true
+    return false
   }
 
   ngOnInit(): void {

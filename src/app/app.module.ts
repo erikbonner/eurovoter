@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireAuthModule, SETTINGS, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { SETTINGS, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
@@ -20,6 +20,7 @@ import { VoterAvatarComponent } from './components/voter-avatar/voter-avatar.com
 import { RankingTableComponent } from './components/ranking-table/ranking-table.component';
 import { CountryIconComponent } from './components/country-icon/country-icon.component';
 import { VoterInfoComponent } from './components/voter-info/voter-info.component';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,12 @@ import { VoterInfoComponent } from './components/voter-info/voter-info.component
       useValue: environment.production ? undefined : {
         host: 'localhost:8081',
         ssl: false
-      }
+      },
+    },
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (s: PlatformLocation) => s.getBaseHrefFromDOM(),
+      deps: [PlatformLocation]
     }
   ],
   bootstrap: [AppComponent]

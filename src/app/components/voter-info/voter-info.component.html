@@ -1,7 +1,7 @@
 <mat-card class="card">
     <mat-card-header>
       <div mat-card-avatar 
-        [ngStyle]="{ 'background-image': 'url(' + (voter.photoUrl || '../assets/anon-avatar.svg') + ')'}"
+        [ngStyle]="{ 'background-image': 'url(' + (voter.photoUrl || baseHref + 'assets/anon-avatar.svg') + ')'}"
         class="avatar"></div>
       <mat-card-title>{{voter.name}}</mat-card-title>
     </mat-card-header>
