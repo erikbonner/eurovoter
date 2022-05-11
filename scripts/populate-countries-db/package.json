@@ -1,0 +1,15 @@
+{
+  "name": "populate-countries-db",
+  "version": "1.0.0",
+  "description": "simple script to populate firestore db with eurovision finalists",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-for-emulator": "FIRESTORE_EMULATOR_HOST=\"localhost:8080\" node index.js"
+  },
+  "author": "Erik Bonner",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^10.2.0"
+  }
+}

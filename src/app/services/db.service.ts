@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { collectionData, Firestore, collection, doc, updateDoc, query, where, getDocs, CollectionReference, DocumentData, setDoc, getDoc, onSnapshot, FirestoreError } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Country } from '../models/country.model';
 import { Voter } from '../models/voter.model';
+
+const collections = {
+  voters: 'voters',
+  countries: 'countries2022'
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +22,22 @@ export class DbService {
   constructor(
     private readonly firestore: Firestore
   ) {
-    const countriesRef = collection(this.firestore, 'countries');
-    this.countries$ = collectionData(countriesRef, { idField: 'id' }) as Observable<Country[]>;
+    const countriesRef = collection(this.firestore, collections.countries);
+    this.countries$ = (
+      collectionData(countriesRef, { idField: 'id' }) as Observable<Country[]>
+    ).pipe(
+        map(countries => {
+          return countries.map(country => ({...country, code: country.code.toLowerCase()}));
+        })
+    )
 
-    this.votersCollectionRef = collection(this.firestore, 'voters');
-    this.voters$ = collectionData(this.votersCollectionRef, { idField: 'id' }) as Observable<Voter[]>;
+    this.votersCollectionRef = collection(this.firestore, collections.voters);
+    this.voters$ = collectionData(this.votersCollectionRef, { idField: 'id' }) as Observable<Voter[]>
   }
 
   async addVoter(voter: Voter) {
     try {
-      const docRef = doc(this.firestore, 'voters', voter.uid);
+      const docRef = doc(this.firestore, collections.voters, voter.uid);
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
@@ -39,7 +50,7 @@ export class DbService {
   }
 
   async patchVoter(uid: string, patch: Partial<Voter>) {
-    const docRef = doc(this.firestore, 'voters', uid);
+    const docRef = doc(this.firestore, collections.voters, uid);
     try {
       await updateDoc(docRef, { ...patch })
     } catch (e) {
@@ -50,7 +61,7 @@ export class DbService {
   getVoter$(uid: string): Observable<Voter> {
     return new Observable(subscriber => {
       try {
-        onSnapshot(doc(this.firestore, 'voters', uid), {
+        onSnapshot(doc(this.firestore, collections.voters, uid), {
           next: (snapshot) => {
             const data = snapshot.data() as Voter;
             console.log(`user ${data.name} updated`);
