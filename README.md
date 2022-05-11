@@ -1,5 +1,3 @@
-# Eurovoter
-
 ## Overview
 As we all know, the EuroVision Song Contest is the greatest contest of all time, where the most talented act *always* wins. 
 
