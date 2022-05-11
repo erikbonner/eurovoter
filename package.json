@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build-for-deploy": "ng build --baseHref=/eurovoter/",
+    "deploy-quick": "sh ./scripts/deploy/deploy-quick.sh",
     "start-emulator": "firebase emulators:start --export-on-exit=./emulator-data --import=./emulator-data",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

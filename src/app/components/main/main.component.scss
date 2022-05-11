@@ -6,24 +6,6 @@
     height: 100%;
 }
 
-// .header {
-//     height: 20%;
-//     width: 100%;
-//     background: url('/assets/wurst.jpg') no-repeat center center;
-// }
-
-// .background {
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     // background: url('/assets/wurst.jpg') no-repeat center center;
-//     // background-size: cover;
-//     // filter: brightness(.15);
-//     // background-position: center;
-//     // background-size: cover;
-// }
-
-
 mat-toolbar {
     margin-bottom: 2rem;
 }
@@ -38,10 +20,11 @@ mat-toolbar {
 
 .ranking-table {
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .vote-selector {
-    margin-top: 3rem;
+    // stub
 }
 
 .votes {
@@ -49,11 +32,8 @@ mat-toolbar {
 }
 
 .text-header {
-    margin-top: 1rem;
+    margin: 1rem;
     font-size: 1rem;
-    /* font-weight: bold; */
     border-bottom: 1px solid lightgrey;
-    margin-left: 1rem;
     font: 300 20px Roboto, "Helvetica Neue", sans-serif;
-    margin-right: 1rem;
 }

@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { VoteSelectorComponent } from './components/vote-selector/vote-selector.component';
 import { CountrySelectorControlComponent } from './components/vote-selector/country-selector-control/country-selector-control.component';
 import { VoterListComponent } from './components/voter-list/voter-list.component';
-import { VoterAvatarComponent } from './components/voter-avatar/voter-avatar.component';
 import { RankingTableComponent } from './components/ranking-table/ranking-table.component';
 import { CountryIconComponent } from './components/country-icon/country-icon.component';
 import { VoterInfoComponent } from './components/voter-info/voter-info.component';
@@ -30,7 +29,6 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
     VoteSelectorComponent,
     CountrySelectorControlComponent,
     VoterListComponent,
-    VoterAvatarComponent,
     RankingTableComponent,
     CountryIconComponent,
     VoterInfoComponent
