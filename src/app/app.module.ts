@@ -26,6 +26,7 @@ import { UserProfileScreenComponent } from './components/user-profile-screen/use
 import { provideStorage } from '@angular/fire/storage';
 import { getStorage } from 'firebase/storage';
 import { ToolbarHostComponent } from './components/toolbar-host/toolbar-host.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ToolbarHostComponent } from './components/toolbar-host/toolbar-host.com
     CountryIconComponent,
     VoterInfoComponent,
     ToolbarComponent,
-    ToolbarHostComponent
+    ToolbarHostComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

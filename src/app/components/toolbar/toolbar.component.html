@@ -1,17 +1,11 @@
 <mat-toolbar color="primary">
     <span class="home" (click)="home.emit()">Eurovoter</span>
     <span class="spacer"></span>
-    <!-- <button mat-button (click)="account.emit()">
-        <mat-icon>person</mat-icon>
-        profile
-    </button>
-
-    <button mat-button (click)="logout.emit()">
-        <mat-icon>logout</mat-icon>
-    </button> -->
     <button class="profile-button" mat-icon-button [matMenuTriggerFor]="menu">
-        <img [src]="profileUrl ?? defaultAvatar" class="avatar">
-        <mat-icon>arrow_drop_down</mat-icon>
+        <div class="profile-button-layouter">
+            <app-avatar [src]="profileUrl" class="avatar"></app-avatar>
+            <mat-icon>arrow_drop_down</mat-icon>
+        </div>
     </button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="account.emit()">

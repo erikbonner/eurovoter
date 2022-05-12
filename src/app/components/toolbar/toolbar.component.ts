@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { AppConstants } from 'src/app/models/app-constants.const';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +7,6 @@ import { AppConstants } from 'src/app/models/app-constants.const';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent {
-  public readonly defaultAvatar = AppConstants.defaultAvatar;
   @Input() profileUrl: string | null | undefined = null;
   @Output() home = new EventEmitter<void>();
   @Output() account = new EventEmitter<void>();

@@ -8,9 +8,15 @@
 
 .profile-button {
     margin-right: 1rem;
+    &-layouter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .avatar {
     width: 2.5rem;
-    border-radius: 50%;
+    height: 2.5rem;
+    flex-shrink: 0;
 }
