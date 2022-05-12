@@ -1,24 +1,13 @@
-<div class="background"></div>
-<div class="content">
+<app-toolbar (logout)="onLogout()"></app-toolbar>
+<div class="text-header">Results</div>
 
-    <mat-toolbar color="primary">
-        <span>Eurovoter</span>
-        <span class="spacer"></span>
-        <button mat-button (click)="onLogout()">
-            <mat-icon>logout</mat-icon>
-        </button>
-    </mat-toolbar>
+<app-ranking-table class="ranking-table" [rankings]="(votingService.results$ | async) ?? []"></app-ranking-table>
 
-    <div class="text-header">Results</div>
+<div class="text-header">Vote</div>
+<app-vote-selector class="vote-selector" [countries]="(dbService.countries$ | async) ?? []"
+    [vote]="(userService.loggedInUser$ | async)?.vote ?? null" (voteChange)="onVoteChanged($event)">
+</app-vote-selector>
 
-    <app-ranking-table class="ranking-table" [rankings]="(votingService.results$ | async) ?? []"></app-ranking-table>
+<div class="text-header">Participants</div>
 
-    <div class="text-header">Vote</div>
-    <app-vote-selector class="vote-selector" [countries]="(dbService.countries$ | async) ?? []"
-        [vote]="(userService.loggedInUser$ | async)?.vote ?? null" (voteChange)="onVoteChanged($event)">
-    </app-vote-selector>
-
-    <div class="text-header">Participants</div>
-
-    <app-voter-list [voters]="(dbService.voters$ | async) ?? []"></app-voter-list>
-</div>
+<app-voter-list [voters]="(dbService.voters$ | async) ?? []"></app-voter-list>

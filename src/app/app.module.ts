@@ -18,8 +18,9 @@ import { CountrySelectorControlComponent } from './components/vote-selector/coun
 import { VoterListComponent } from './components/voter-list/voter-list.component';
 import { RankingTableComponent } from './components/ranking-table/ranking-table.component';
 import { CountryIconComponent } from './components/country-icon/country-icon.component';
-import { VoterInfoComponent } from './components/voter-info/voter-info.component';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
+import { VoterInfoComponent } from './components/voter-list/voter-info/voter-info.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
     VoterListComponent,
     RankingTableComponent,
     CountryIconComponent,
-    VoterInfoComponent
+    VoterInfoComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
