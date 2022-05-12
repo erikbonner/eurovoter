@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    padding: .5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    background: #fefefe;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.card {
+    box-shadow: 0px 1px 2px 0px rgba(60,64,67,.30),0px 1px 3px 1px rgba(60,64,67,.15);
+    border-radius: 5px;
+    width: 80%;
+}
+
+.profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+
+    &__image {
+        border-radius: 50%;
+        width: 128px;
+    }
+
+    &__button {
+        margin-top: 1rem;
+    }
+}
+
+.divider {
+    margin-bottom: 2rem;
+}
+
+.display-name-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
+.display-name-form-field {
+    width: 80%;
+}
+
+.footer {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    background: #3f51b50a;
+    justify-content: right;
+}
+
+.edit-icon {
+    margin-right: .5rem;
+}

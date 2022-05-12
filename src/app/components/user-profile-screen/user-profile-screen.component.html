@@ -1,0 +1,24 @@
+<app-toolbar-host></app-toolbar-host>
+
+<div class="content">
+    <div class="card" *ngIf="userService.loggedInUser$ | async as user">
+
+        <div class="profile-pic">
+            <img class="profile-pic__image" [src]="user.photoUrl ?? defaultAvatar">
+            <button class="profile-pic__button" type="button" mat-raised-button (click)="fileInput.click()">
+                <mat-icon class="edit-icon">edit</mat-icon>Change
+            </button>
+            <input hidden #fileInput type="file" id="file" (change)="onFileSelected($event, user.uid)">
+        </div>
+
+        <form class="display-name-form">
+            <mat-form-field class="display-name-form-field">
+                <input matInput placeholder="Display name" [value]="user.name" (input)="onUpdateUser($event, user.uid)">
+            </mat-form-field>
+        </form>
+
+        <div class="footer">
+            <button class="footer__done-button" mat-raised-button (click)="onHome()">Go to voting</button>
+        </div>
+    </div>
+</div>

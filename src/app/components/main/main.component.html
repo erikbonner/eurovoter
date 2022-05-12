@@ -1,4 +1,6 @@
-<app-toolbar (logout)="onLogout()"></app-toolbar>
+<!-- <app-toolbar (logout)="onLogout()"></app-toolbar> -->
+<app-toolbar-host></app-toolbar-host>
+
 <div class="text-header">Results</div>
 
 <app-ranking-table class="ranking-table" [rankings]="(votingService.results$ | async) ?? []"></app-ranking-table>

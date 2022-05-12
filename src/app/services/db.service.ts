@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { collectionData, Firestore, collection, doc, updateDoc, query, where, getDocs, CollectionReference, DocumentData, setDoc, getDoc, onSnapshot, FirestoreError } from '@angular/fire/firestore';
+import { Injectable, NgZone } from '@angular/core';
+import { collectionData, Firestore, collection, doc, updateDoc, CollectionReference, DocumentData, setDoc, getDoc, onSnapshot, FirestoreError } from '@angular/fire/firestore';
+import { getStorage, Storage, ref, uploadBytes, connectStorageEmulator, getDownloadURL } from '@angular/fire/storage'
 import { map, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Country } from '../models/country.model';
 import { Voter } from '../models/voter.model';
 
@@ -20,8 +22,15 @@ export class DbService {
   private readonly votersCollectionRef: CollectionReference<DocumentData>;
 
   constructor(
-    private readonly firestore: Firestore
+    private readonly firestore: Firestore,
+    private readonly storage: Storage,
+    private ngZone: NgZone
   ) {
+    // if we have a dev build, use emulator for storage
+    if(environment.useEmulators) {
+      connectStorageEmulator(this.storage, "localhost", 9199);
+    }
+
     const countriesRef = collection(this.firestore, collections.countries);
     this.countries$ = (
       collectionData(countriesRef, { idField: 'id' }) as Observable<Country[]>
@@ -35,17 +44,21 @@ export class DbService {
     this.voters$ = collectionData(this.votersCollectionRef, { idField: 'id' }) as Observable<Voter[]>
   }
 
-  async addVoter(voter: Voter) {
+  async addVoter(voter: Voter): Promise<'Success' | 'AlreadyExists' | 'Error'> {
     try {
       const docRef = doc(this.firestore, collections.voters, voter.uid);
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
         console.log('User does not already exist, adding...')
-        await setDoc(doc(this.votersCollectionRef, voter.uid), { ...voter })
+        await setDoc(doc(this.votersCollectionRef, voter.uid), { ...voter });
+        return 'Success';
+      } else {
+        return 'AlreadyExists';
       }
     } catch (e) {
       console.error('addVoter error: ', JSON.stringify(e))
+      return 'Error'
     }
   }
 
@@ -58,17 +71,38 @@ export class DbService {
     }
   }
 
+  async updateVoterProfileImage(uid: string, file: any) {
+    console.log('uploadProfileImage', file)
+    const imgRef = ref(this.storage, 'profilePics/' + file.name)
+    
+    try {
+      const snapshot = await uploadBytes(imgRef, file);
+      const url = await  getDownloadURL(snapshot.ref);
+      
+      console.log('update user profile: ', url);
+      await this.patchVoter(uid, { photoUrl: url });
+    } catch(e) {
+      console.error('Error uploading profile image!')
+    }
+  }
+
   getVoter$(uid: string): Observable<Voter> {
     return new Observable(subscriber => {
+
       try {
         onSnapshot(doc(this.firestore, collections.voters, uid), {
           next: (snapshot) => {
             const data = snapshot.data() as Voter;
-            console.log(`user ${data.name} updated`);
-            subscriber.next(data);
+            if(data) {
+              console.log(`user ${data.name} updated`);
+              this.ngZone.run(() => subscriber.next(data));
+            } else {
+              console.log('getVoters$() snapshot.data is null')
+            }
+           
           },
-          error: (e: FirestoreError) => subscriber.error(e),
-          complete: () => subscriber.complete()
+          error: (e: FirestoreError) => this.ngZone.run(() => subscriber.error(e)),
+          complete: () => this.ngZone.run(() => subscriber.complete())
         })
       } catch (e) {
         console.error('getVoter() observable ERROR', e);

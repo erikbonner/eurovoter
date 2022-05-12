@@ -9,6 +9,7 @@ import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SETTINGS, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
+import { USE_EMULATOR as USE_STORAGE_EMULATOR } from '@angular/fire/compat/storage';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material.module';
@@ -21,11 +22,16 @@ import { CountryIconComponent } from './components/country-icon/country-icon.com
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { VoterInfoComponent } from './components/voter-list/voter-info/voter-info.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { UserProfileScreenComponent } from './components/user-profile-screen/user-profile-screen.component';
+import { provideStorage } from '@angular/fire/storage';
+import { getStorage } from 'firebase/storage';
+import { ToolbarHostComponent } from './components/toolbar-host/toolbar-host.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    UserProfileScreenComponent,
     LoginComponent,
     VoteSelectorComponent,
     CountrySelectorControlComponent,
@@ -33,7 +39,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     RankingTableComponent,
     CountryIconComponent,
     VoterInfoComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ToolbarHostComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +56,15 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
       }
       return firestore;
     }),
+    provideStorage(() => getStorage()),
+
     // AngularFireAuthModule,
     BrowserAnimationsModule
   ],
   providers: [
     { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
     { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
+    { provide: USE_STORAGE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9199] : undefined },
     {
       provide: SETTINGS,
       useValue: environment.production ? undefined : {

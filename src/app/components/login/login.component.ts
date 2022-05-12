@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { EmailAuthCredential, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import * as firebaseui from 'firebaseui'
-import { Voter } from 'src/app/models/voter.model';
-import { DbService } from 'src/app/services/db.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,14 +14,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly auth: Auth,
-    private readonly dbService: DbService,
     private readonly router: Router,
   ) { 
   }
 
   onLoginSuccessful(authResult: any, redirectUrl?: string): boolean {
     console.log('Login Success!', {authResult, redirectUrl})
-    this.router.navigateByUrl('/main')
+    // routing will be handled by userService
     return false
   }
 
