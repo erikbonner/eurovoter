@@ -5,6 +5,9 @@ import { DbService } from 'src/app/services/db.service';
 import { UserService } from 'src/app/services/user.service';
 import { VotingService } from 'src/app/services/voting.service';
 
+/**
+ * The main voting screen.
+ */
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

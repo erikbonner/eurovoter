@@ -1,5 +1,5 @@
 <app-toolbar
     [profileUrl]="(userService.loggedInUser$ | async)?.photoUrl"
-    (home)="onHome()"
-    (account)="onAccount()" 
-    (logout)="onLogout()"></app-toolbar>
+    (home)="routingService.home()"
+    (account)="routingService.profile()" 
+    (logout)="this.userService.logout()"></app-toolbar>

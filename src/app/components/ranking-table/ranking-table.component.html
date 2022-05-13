@@ -1,12 +1,10 @@
 <table mat-table [dataSource]="rankings" class="mat-elevation-z8">
 
-    <!-- Rank Column -->
     <ng-container matColumnDef="rank">
       <th mat-header-cell *matHeaderCellDef> Rank </th>
       <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
     </ng-container>
   
-    <!-- Name Column -->
     <ng-container matColumnDef="country">
       <th mat-header-cell *matHeaderCellDef> Country </th>
       <td mat-cell *matCellDef="let element"> 
@@ -15,7 +13,6 @@
      </td>
     </ng-container>
   
-    <!-- Score Column -->
     <ng-container matColumnDef="score">
       <th mat-header-cell *matHeaderCellDef> Score </th>
       <td mat-cell *matCellDef="let element"> {{element.score}} </td>

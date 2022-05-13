@@ -4,7 +4,6 @@
     <div class="card" *ngIf="userService.loggedInUser$ | async as user">
 
         <div class="profile-pic">
-            <!-- <img class="profile-pic__image" [src]="user.photoUrl ?? defaultAvatar"> -->
             <app-avatar class="profile-pic__image" [src]="user.photoUrl"></app-avatar>
             <button class="profile-pic__button" type="button" mat-raised-button (click)="fileInput.click()">
                 <mat-icon class="edit-icon">edit</mat-icon>Change

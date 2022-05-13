@@ -11,21 +11,31 @@ const countryRegionalCodes = require('./slim-2.json')
  * Finalists taken from here: https://eurovisionworld.com/eurovision/2022
  */
 const finalists = [
-    'Armenia',
-    'France',
-    'Germany',
-    'Netherlands',
-    'Norway',
+    'Czechia',
+    'Romania',
     'Portugal',
-    'Spain',
+    'Finland',
     'Switzerland',
-    'Ukraine',
+    'France',
+    'Norway',
+    'Armenia',
     'Italy',
+    'Spain',
+    'Netherlands',
+    'Ukraine',
+    'Germany',
+    'Lithuania',
+    'Azerbaijan',
+    'Belgium',
     'Greece',
     'Iceland',
-    'Lithuania',
     'Moldova',
-    'United Kingdom'
+    'Sweden',
+    'Australia',
+    'United Kingdom',
+    'Poland',
+    'Serbia',
+    'Estonia',
 ].map(finalist => {
     const countryInfo = countryRegionalCodes.find(c => c.name.includes(finalist));
     return { name: finalist, code: countryInfo && countryInfo['alpha-2'] }

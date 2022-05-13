@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RoutingService } from 'src/app/services/routing.service';
 import { UserService } from 'src/app/services/user.service';
 
 /**
@@ -12,25 +12,8 @@ import { UserService } from 'src/app/services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarHostComponent {
-
   constructor(
-    private readonly router: Router,
+    readonly routingService: RoutingService,
     readonly userService: UserService
   ) { }
-
-  onHome() {
-    this.routeTo('/main');
-  }
-
-  onAccount() {
-    this.routeTo('/profile');
-  }
-
-  onLogout() {
-    this.userService.logout()
-  }
-
-  private routeTo(url: string) {
-    this.router.navigateByUrl(url)
-  }
 }
