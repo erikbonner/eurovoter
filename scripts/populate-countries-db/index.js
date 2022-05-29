@@ -1,6 +1,11 @@
 const admin = require('firebase-admin');
 
 const { getFirestore } = require('firebase-admin/firestore');
+
+/**
+ * Note this is not checked into the repository. Each project will generate and keep
+ * its own local version of this file.
+ */
 const serviceAccount = require('./firebase-private-key.json');
 
 // from https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/tree/master/slim-2

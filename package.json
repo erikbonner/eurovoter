@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-prod": "ng serve --configuration production",
     "build": "ng build",
     "build-for-deploy": "ng build --baseHref=/eurovoter/",
     "deploy": "sh ./scripts/deploy/deploy.sh",

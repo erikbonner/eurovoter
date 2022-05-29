@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import * as firebaseui from 'firebaseui'
 @Component({
@@ -13,8 +12,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ui: firebaseui.auth.AuthUI;
 
   constructor(
-    private readonly auth: Auth,
-    private readonly router: Router,
+    private readonly auth: Auth
   ) { 
   }
 
