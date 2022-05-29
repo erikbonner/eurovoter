@@ -8,6 +8,14 @@ This is a small, Angular-based tool to allow myself and my mates vote for our fa
 * [Firebase](https://firebase.google.com/)
 * [firebaseui-web](https://github.com/firebase/firebaseui-web)
 
+This app has been tested with the following nodejs versions:
+* v12.22.9
+* v16.15.0
+
+and the following npm versions
+* 8.5.1
+* 8.5.5
+
 ## Why is it interesting?
 Although the app is intended mainly as a gimmick, its limited scope helps it to serve as a simple example for a number of common Angular+Firebase use-cases, without the distraction of complex app domain details. Some of these are:
 
