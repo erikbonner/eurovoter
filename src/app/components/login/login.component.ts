@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import * as firebaseui from 'firebaseui'
+import * as firebaseui from 'firebaseui';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly auth: Auth
-  ) { 
+  ) {
   }
 
   onLoginSuccessful(authResult: any, redirectUrl?: string): boolean {
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         GoogleAuthProvider.PROVIDER_ID,
         EmailAuthProvider.PROVIDER_ID,
       ],
+      signInFlow:'popup',
       callbacks: {
         signInSuccessWithAuthResult: this.onLoginSuccessful.bind(this)
       }

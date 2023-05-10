@@ -1,32 +1,32 @@
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SETTINGS, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
+import { SETTINGS } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 import { USE_EMULATOR as USE_STORAGE_EMULATOR } from '@angular/fire/compat/storage';
-import { MainComponent } from './components/main/main.component';
-import { LoginComponent } from './components/login/login.component';
-import { MaterialModule } from './material.module';
+import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideStorage } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
-import { VoteSelectorComponent } from './components/vote-selector/vote-selector.component';
-import { CountrySelectorControlComponent } from './components/vote-selector/country-selector-control/country-selector-control.component';
-import { VoterListComponent } from './components/voter-list/voter-list.component';
-import { RankingTableComponent } from './components/ranking-table/ranking-table.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { getStorage } from 'firebase/storage';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 import { CountryIconComponent } from './components/country-icon/country-icon.component';
-import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
-import { VoterInfoComponent } from './components/voter-list/voter-info/voter-info.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { RankingTableComponent } from './components/ranking-table/ranking-table.component';
+import { ToolbarHostComponent } from './components/toolbar-host/toolbar-host.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { UserProfileScreenComponent } from './components/user-profile-screen/user-profile-screen.component';
-import { provideStorage } from '@angular/fire/storage';
-import { getStorage } from 'firebase/storage';
-import { ToolbarHostComponent } from './components/toolbar-host/toolbar-host.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
+import { CountrySelectorControlComponent } from './components/vote-selector/country-selector-control/country-selector-control.component';
+import { VoteSelectorComponent } from './components/vote-selector/vote-selector.component';
+import { VoterInfoComponent } from './components/voter-list/voter-info/voter-info.component';
+import { VoterListComponent } from './components/voter-list/voter-list.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,13 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     MaterialModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
+    provideAuth(() => {
+      const auth = getAuth();
+      if (!environment.production) {
+        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+      }
+      return auth;
+    }),
     provideFirestore(() => {
       const firestore = getFirestore();
       if (!environment.production) {
@@ -59,12 +65,9 @@ import { AvatarComponent } from './components/avatar/avatar.component';
       return firestore;
     }),
     provideStorage(() => getStorage()),
-
-    // AngularFireAuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
-    { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
     { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
     { provide: USE_STORAGE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9199] : undefined },
     {

@@ -79,3 +79,7 @@ It is highly recommended to develop locally using the firestore emulator, rather
 ```sh
    npm run start-emulator
 ```
+
+## Attributions
+
+* [Pride icons](https://www.flaticon.com/free-icons/pride) created by Vlad Szirka - Flaticon

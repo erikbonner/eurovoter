@@ -1,5 +1,26 @@
 .home {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      width: 32px;
+      height: 32px;
+      margin-right: .6rem;
+    }
+
+    &__title {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+    }
+
+    &__subtitle {
+      font-size: 0.8rem;
+      font-weight: normal;
+      line-height: 1rem;
+    }
 }
 
 .spacer {

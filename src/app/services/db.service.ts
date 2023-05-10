@@ -1,14 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
-import { collectionData, Firestore, collection, doc, updateDoc, CollectionReference, DocumentData, setDoc, getDoc, onSnapshot, FirestoreError } from '@angular/fire/firestore';
-import { getStorage, Storage, ref, uploadBytes, connectStorageEmulator, getDownloadURL } from '@angular/fire/storage'
-import { map, Observable, tap } from 'rxjs';
+import { CollectionReference, DocumentData, Firestore, FirestoreError, collection, collectionData, doc, getDoc, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Storage, connectStorageEmulator, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Country } from '../models/country.model';
 import { Voter } from '../models/voter.model';
 
 const collections = {
-  voters: 'voters',
-  countries: 'countries2022'
+  voters: 'voters2023',
+  countries: 'countries2023'
 }
 
 @Injectable({
@@ -74,11 +74,11 @@ export class DbService {
   async updateVoterProfileImage(uid: string, file: any) {
     console.log('uploadProfileImage', file)
     const imgRef = ref(this.storage, 'profilePics/' + file.name)
-    
+
     try {
       const snapshot = await uploadBytes(imgRef, file);
       const url = await  getDownloadURL(snapshot.ref);
-      
+
       console.log('update user profile: ', url);
       await this.patchVoter(uid, { photoUrl: url });
     } catch(e) {
@@ -99,7 +99,7 @@ export class DbService {
             } else {
               console.log('getVoters$() snapshot.data is null')
             }
-           
+
           },
           error: (e: FirestoreError) => this.ngZone.run(() => subscriber.error(e)),
           complete: () => this.ngZone.run(() => subscriber.complete())

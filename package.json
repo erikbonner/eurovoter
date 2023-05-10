@@ -1,12 +1,12 @@
 {
   "name": "ng-eurovoter",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "start-prod": "ng serve --configuration production",
     "build": "ng build",
-    "build-for-deploy": "ng build --baseHref=/eurovoter/",
+    "build-for-deploy": "ng build --baseHref=/eurovoter-2023/",
     "deploy": "sh ./scripts/deploy/deploy.sh",
     "deploy-quick": "sh ./scripts/deploy/deploy-quick.sh",
     "start-emulator": "firebase emulators:start --export-on-exit=./emulator-data --import=./emulator-data",

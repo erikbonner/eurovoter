@@ -16,35 +16,47 @@ const countryRegionalCodes = require('./slim-2.json')
  * Finalists taken from here: https://eurovisionworld.com/eurovision/2022
  */
 const finalists = [
-    'Czechia',
-    'Romania',
-    'Portugal',
-    'Finland',
-    'Switzerland',
-    'France',
-    'Norway',
-    'Armenia',
-    'Italy',
-    'Spain',
-    'Netherlands',
-    'Ukraine',
-    'Germany',
-    'Lithuania',
-    'Azerbaijan',
-    'Belgium',
-    'Greece',
-    'Iceland',
-    'Moldova',
-    'Sweden',
-    'Australia',
-    'United Kingdom',
-    'Poland',
-    'Serbia',
-    'Estonia',
+  "Austria",
+  "Portugal",
+  "Switzerland",
+  "Poland",
+  "Serbia",
+  "France",
+  "Cyprus",
+  "Spain",
+  "Sweden",
+  "Albania",
+  "Italy",
+  "Estonia",
+  "Finland",
+  "Czechia",
+  "Australia",
+  "Belgium",
+  "Armenia",
+  "Moldova",
+  "Ukraine",
+  "Norway",
+  "Germany",
+  "Lithuania",
+  "Israel",
+  "Slovenia",
+  "Croatia",
+  "United Kingdom"
 ].map(finalist => {
     const countryInfo = countryRegionalCodes.find(c => c.name.includes(finalist));
     return { name: finalist, code: countryInfo && countryInfo['alpha-2'] }
 });
+
+async function deleteCollection(db, collectionPath) {
+  const collectionRef = db.collection(collectionPath);
+  const docs = await collectionRef.listDocuments();
+
+  docs.forEach((doc) => {
+    doc.delete();
+  });
+}
+
+const collectionName = 'countries2023';
 
 async function main() {
     admin.initializeApp({
@@ -52,9 +64,13 @@ async function main() {
     });
 
     const db = getFirestore();
+
+    // clear out the collection first
+    await deleteCollection(db, collectionName);
+
     for(const finalist of finalists) {
         console.log('pushing finalist', finalist)
-        await db.collection("countries2022").doc(finalist.name).set(finalist)
+        await db.collection(collectionName).doc(finalist.name).set(finalist)
     }
 }
 
