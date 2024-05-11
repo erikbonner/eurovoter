@@ -7,8 +7,8 @@ import { Country } from '../models/country.model';
 import { Voter } from '../models/voter.model';
 
 const collections = {
-  voters: 'voters2023',
-  countries: 'countries2023'
+  voters: 'voters2024',
+  countries: 'countries2024'
 }
 
 @Injectable({

@@ -16,32 +16,32 @@ const countryRegionalCodes = require('./slim-2.json')
  * Finalists taken from here: https://eurovisionworld.com/eurovision/2022
  */
 const finalists = [
-  "Austria",
-  "Portugal",
-  "Switzerland",
-  "Poland",
-  "Serbia",
-  "France",
-  "Cyprus",
-  "Spain",
   "Sweden",
-  "Albania",
-  "Italy",
-  "Estonia",
-  "Finland",
-  "Czechia",
-  "Australia",
-  "Belgium",
-  "Armenia",
-  "Moldova",
   "Ukraine",
-  "Norway",
   "Germany",
-  "Lithuania",
+  "Luxembourg",
+  "Netherlands",
   "Israel",
+  "Lithuania",
+  "Spain",
+  "Estonia",
+  "Ireland",
+  "Latvia",
+  "Greece",
+  "United Kingdom",
+  "Norway",
+  "Italy",
+  "Serbia",
+  "Finland",
+  "Portugal",
+  "Armenia",
+  "Cyprus",
+  "Switzerland",
   "Slovenia",
   "Croatia",
-  "United Kingdom"
+  "Georgia",
+  "France",
+  "Austria"
 ].map(finalist => {
     const countryInfo = countryRegionalCodes.find(c => c.name.includes(finalist));
     return { name: finalist, code: countryInfo && countryInfo['alpha-2'] }
@@ -56,7 +56,7 @@ async function deleteCollection(db, collectionPath) {
   });
 }
 
-const collectionName = 'countries2023';
+const collectionName = 'countries2024';
 
 async function main() {
     admin.initializeApp({
