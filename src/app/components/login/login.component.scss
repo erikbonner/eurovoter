@@ -9,19 +9,3 @@
     background-size: cover;
     position: relative;
 }
-
-.bg-attribute {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    display: flex;
-    flex-direction: column;
-    font-size: 8px;
-    color: #fefefe;
-}
-
-@media screen and (min-width: 500px) {
-    .bg-attribute {
-        font-size: 11px;
-    }
-}

@@ -1,5 +1,30 @@
-.card {
-    max-width: 350px;
+@import 'global-variables';
+
+$max-voter-card-width: 330px;
+
+@mixin card-columns($num-cols) {
+  $min-width: calc((#{$max-voter-card-width} + 2 * #{$voter-card-margin}) * #{$num-cols});
+  @media (min-width: $min-width) {
+    @content;
+  }
+}
+
+:host {
+  display: block;
+  width:  100%;
+}
+
+@include card-columns(2) {
+  :host {
+    width: calc(50% - 2*$voter-card-margin);
+  }
+}
+
+@include card-columns(3) {
+  :host {
+    width: calc(33.33% - 4*$voter-card-margin);
+    max-width: 500px;
+  }
 }
 
 .avatar {
@@ -19,4 +44,8 @@
 .vote {
     margin-left: .5rem;
     margin-right: 1rem;
+}
+
+.mat-card-header {
+  overflow: hidden;
 }
